@@ -1,0 +1,37 @@
+#separator:tab
+#html:false
+#notetype:Basic
+#deck:Kryptografie - RSA AES Diffie-Hellman
+#columns:Vorderseite	Rückseite	Tags
+Was bedeutet symmetrische Verschlüsselung?	Zum Verschlüsseln und Entschlüsseln wird derselbe geheime Schlüssel verwendet.	kryptografie
+Was bedeutet asymmetrische Verschlüsselung?	Es wird ein Schlüsselpaar verwendet: ein öffentlicher Schlüssel (Public Key) und ein geheimer privater Schlüssel (Private Key).	kryptografie
+Wie funktioniert RSA bei der Verschlüsselung?	Der Absender verschlüsselt mit dem Public Key des Empfängers. Nur der passende Private Key kann die Daten entschlüsseln.	kryptografie
+Wie funktioniert RSA bei einer digitalen Signatur?	Der Absender bildet einen Hash der Nachricht und signiert diesen mit seinem Private Key. Der Empfänger prüft die Signatur mit dem Public Key des Absenders.	kryptografie
+Was beweist eine gültige digitale Signatur?	Sie bestätigt die Herkunft der signierten Daten und zeigt, dass die Daten seit der Signatur nicht verändert wurden. Voraussetzung ist, dass der Public Key vertrauenswürdig zugeordnet ist.	kryptografie
+Wird bei einer RSA-Signatur die gesamte Nachricht mit dem Private Key verschlüsselt?	Nein. In der Praxis wird ein Hash der Nachricht mit einem Signaturverfahren und sicherem Padding signiert, zum Beispiel RSA-PSS.	kryptografie
+Was ist ein Hashwert?	Ein Hashwert ist ein fester digitaler Fingerabdruck von Daten. Schon eine kleine Änderung der Eingangsdaten erzeugt normalerweise einen deutlich anderen Hashwert.	kryptografie
+Was ist AES?	AES ist ein moderner symmetrischer Blockverschlüsselungsalgorithmus. Beide Seiten verwenden denselben geheimen Schlüssel.	kryptografie
+Welche AES-Schlüssellängen gibt es?	AES-128, AES-192 und AES-256 mit 128, 192 beziehungsweise 256 Bit langen Schlüsseln.	kryptografie
+Warum ist AES für Nutzdaten besser geeignet als RSA?	AES ist wesentlich schneller und effizienter bei großen Datenmengen. RSA wird nicht zur direkten Verschlüsselung großer Datenströme verwendet.	kryptografie
+Was ist AES-GCM?	AES-GCM ist ein AEAD-Verfahren. Es bietet Verschlüsselung sowie eine Integritäts- und Authentizitätsprüfung der Daten.	kryptografie
+Was bedeutet AEAD?	Authenticated Encryption with Associated Data. Das Verfahren schützt die Vertraulichkeit und erkennt Manipulationen; zusätzliche Metadaten können authentifiziert werden, ohne sie zu verschlüsseln.	kryptografie
+Was ist ein Nonce bei AES-GCM?	Ein einmalig zu verwendender Wert. Derselbe Nonce darf mit demselben Schlüssel nicht erneut verwendet werden, da dies die Sicherheit gefährdet.	kryptografie
+Wozu dient Diffie-Hellman?	Diffie-Hellman ermöglicht zwei Kommunikationspartnern, über ein unsicheres Netzwerk ein gemeinsames Geheimnis abzuleiten, ohne dieses Geheimnis direkt zu übertragen.	kryptografie
+Verschlüsselt Diffie-Hellman Nutzdaten?	Nein. Diffie-Hellman ist ein Schlüsselaustauschverfahren. Aus dem gemeinsamen Geheimnis werden anschließend Sitzungsschlüssel abgeleitet, etwa für AES.	kryptografie
+Was ist ECDHE?	Elliptic Curve Diffie-Hellman Ephemeral. Dabei werden temporäre Schlüssel auf Basis elliptischer Kurven für eine einzelne Sitzung verwendet.	kryptografie
+Was bedeutet Perfect Forward Secrecy?	Wird der langfristige private Schlüssel eines Servers später kompromittiert, sollen frühere aufgezeichnete Sitzungen trotzdem nicht entschlüsselt werden können.	kryptografie
+Warum reicht Diffie-Hellman allein nicht zur Authentifizierung?	Ein nicht authentifizierter Diffie-Hellman-Austausch kann durch einen Man-in-the-Middle-Angriff manipuliert werden. Deshalb wird der Austausch beispielsweise in TLS durch Zertifikate und Signaturen authentifiziert.	kryptografie
+Welche Aufgabe hat AES in einer modernen TLS-Verbindung?	AES, häufig AES-GCM, verschlüsselt die eigentlichen Anwendungs- und Nutzdaten mit den ausgehandelten Sitzungsschlüsseln.	kryptografie
+Welche Aufgabe hat ECDHE in einer modernen TLS-Verbindung?	ECDHE dient zum Ableiten eines gemeinsamen Geheimnisses, aus dem die Sitzungsschlüssel erzeugt werden.	kryptografie
+Welche Aufgabe hat das Serverzertifikat bei TLS?	Es verbindet die Identität des Servers mit dessen öffentlichem Schlüssel. Der Client prüft die Zertifikatskette und die Signaturen.	kryptografie
+Welche modernen symmetrischen Verfahren sind neben AES besonders relevant?	ChaCha20-Poly1305 ist eine wichtige moderne Alternative. ChaCha20 verschlüsselt den Datenstrom, Poly1305 prüft Integrität und Authentizität.	kryptografie
+Was ist der Unterschied zwischen einer Blockchiffre und einer Stromchiffre?	Eine Blockchiffre wie AES verarbeitet feste Datenblöcke. Eine Stromchiffre wie ChaCha20 erzeugt einen Schlüsselstrom, der mit den Daten kombiniert wird.	kryptografie
+Welche älteren symmetrischen Verfahren gelten als veraltet?	DES und 3DES gelten für neue Systeme als veraltet und sollten nicht mehr neu eingesetzt werden.	kryptografie
+Was sind Twofish und Serpent?	Symmetrische Blockchiffren, die Finalisten im AES-Auswahlverfahren waren. Sie sind weiterhin bekannt, aber deutlich weniger verbreitet als AES.	kryptografie
+Was ist Camellia?	Eine symmetrische Blockchiffre mit 128-Bit-Blöcken und Schlüssellängen von 128, 192 oder 256 Bit. Sie ist eine Alternative zu AES, aber weniger verbreitet.	kryptografie
+Welche drei kryptografischen Aufgaben sollte man unterscheiden?	Authentifizierung bzw. Signatur, Schlüsselaustausch und symmetrische Verschlüsselung der Nutzdaten.	kryptografie
+Wie sieht der vereinfachte Ablauf einer modernen TLS-Verbindung aus?	1. Zertifikat und Identität prüfen. 2. Über ECDHE ein gemeinsames Geheimnis ableiten. 3. Sitzungsschlüssel erzeugen. 4. Nutzdaten mit einem AEAD-Verfahren wie AES-GCM oder ChaCha20-Poly1305 schützen.	kryptografie
+Merksatz für RSA-Verschlüsselung	Public Key zum Verschlüsseln, Private Key zum Entschlüsseln.	kryptografie
+Merksatz für digitale Signaturen	Private Key zum Signieren, Public Key zum Prüfen.	kryptografie
+Merksatz für Diffie-Hellman	Gemeinsames Geheimnis ableiten, ohne es über das Netzwerk zu übertragen.	kryptografie
+Merksatz für AES	Derselbe geheime Schlüssel schützt die eigentlichen Daten schnell und effizient.	kryptografie
